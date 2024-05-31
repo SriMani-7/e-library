@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -56,6 +58,25 @@ public class AdminController {
     @DeleteMapping("/book")
     public String deleteBook(@RequestParam String isbn) {
         bookRepository.deleteById(isbn);
+        return "redirect:/admin/dashboard";
+    }
+
+    @GetMapping("/update-book")
+    public String updateBook(@RequestParam String isbn, Model model) {
+        Optional<Book> book = bookRepository.findById(isbn);
+        model.addAttribute("book", book.orElse(null));
+        return "admin-updatebook";
+    }
+
+    @PutMapping("/update-book")
+    public String updateBook(@RequestParam("isbn") String isbn,
+                             @RequestParam("title") String title,
+                             @RequestParam("publisher") String publisher,
+                             @RequestParam("author") String author,
+                             @RequestParam("publishedYear") int publishedYear,
+                             @RequestParam("genre") String genre) {
+        Book book = new Book(isbn, title, publisher, author, publishedYear, genre);
+        bookRepository.save(book);
         return "redirect:/admin/dashboard";
     }
 }
