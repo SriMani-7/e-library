@@ -78,7 +78,10 @@
             <td th:text="${book.genre}">Genre</td>
             <td>
                 <button class="button">Update</button>
-                <button class="button">Delete</button>
+                <form th:action="@{/admin/book}" th:method="DELETE">
+                    <input type="hidden" name="isbn" th:value="${book.isbn}" />
+                    <button type="submit" class="button">Delete</button>
+                </form>
             </td>
         </tr>
         </tbody>

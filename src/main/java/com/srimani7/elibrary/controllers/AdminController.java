@@ -6,10 +6,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin")
@@ -53,6 +50,12 @@ public class AdminController {
                           @RequestParam("genre") String genre, Model model) {
         Book book = new Book(isbn, title, publisher, author, publishedYear, genre);
         bookRepository.save(book);
+        return "redirect:/admin/dashboard";
+    }
+
+    @DeleteMapping("/book")
+    public String deleteBook(@RequestParam String isbn) {
+        bookRepository.deleteById(isbn);
         return "redirect:/admin/dashboard";
     }
 }
