@@ -1,5 +1,6 @@
 package com.srimani7.elibrary.controllers;
 
+import com.srimani7.elibrary.Entity.Book;
 import com.srimani7.elibrary.repositories.BookRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,17 @@ public class AdminController {
     @GetMapping("/addbook")
     public String addBookPage() {
         return "admin-addbook";
+    }
+
+    @PostMapping("/addbook")
+    public String addBook(@RequestParam("isbn") String isbn,
+                          @RequestParam("title") String title,
+                          @RequestParam("publisher") String publisher,
+                          @RequestParam("author") String author,
+                          @RequestParam("publishedYear") int publishedYear,
+                          @RequestParam("genre") String genre, Model model) {
+        Book book = new Book(isbn, title, publisher, author, publishedYear, genre);
+        bookRepository.save(book);
+        return "redirect:/admin/dashboard";
     }
 }
