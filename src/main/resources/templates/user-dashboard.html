@@ -1,1 +1,82 @@
-Dashboard
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System - Admin Dashboard</title>
+    <style>
+        /* Modern CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>Welcome, ${user}</h3>
+    <form method="GET" style="margin-top: 20px;">
+        <input type="text" name="search" placeholder="Search Book...">
+        <button type="submit" class="button">Search</button>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Publisher</th>
+            <th>Author</th>
+            <th>Published Year</th>
+            <th>Genre</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate over books and populate table rows -->
+        <tr th:each="book : ${books}">
+            <td th:text="${book.isbn}">ISBN</td>
+            <td th:text="${book.title}">Title</td>
+            <td th:text="${book.publisher}">Publisher</td>
+            <td th:text="${book.author}">Author</td>
+            <td th:text="${book.publishedYear}">Published Year</td>
+            <td th:text="${book.genre}">Genre</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

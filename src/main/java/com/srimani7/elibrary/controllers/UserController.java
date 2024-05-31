@@ -1,6 +1,7 @@
 package com.srimani7.elibrary.controllers;
 
 import com.srimani7.elibrary.Entity.User;
+import com.srimani7.elibrary.repositories.BookRepository;
 import com.srimani7.elibrary.repositories.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/user")
 public class UserController {
 
+    private final BookRepository bookRepository;
     private final UserRepository userRepository;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
+    public UserController(BookRepository bookRepository, UserRepository userRepository) {
+        this.bookRepository = bookRepository;
         this.userRepository = userRepository;
     }
 
@@ -36,7 +39,11 @@ public class UserController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard() {
+    public String dashboard(@RequestParam(required = false) String search, Model model) {
+        if (search != null) {
+            model.addAttribute("books", bookRepository.findByTitleContains(search));
+        }
+        else model.addAttribute("books", bookRepository.findAll());
         return "user-dashboard";
     }
 
