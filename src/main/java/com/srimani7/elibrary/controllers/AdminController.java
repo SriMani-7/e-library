@@ -31,8 +31,11 @@ public class AdminController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard(Model model) {
-        model.addAttribute("books", bookRepository.findAll());
+    public String dashboard(@RequestParam(required = false) String search, Model model) {
+        if (search != null) {
+            model.addAttribute("books", bookRepository.findByTitleContains(search));
+        }
+        else model.addAttribute("books", bookRepository.findAll());
         return "admin-dashboard";
     }
 
