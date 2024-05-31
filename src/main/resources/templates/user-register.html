@@ -120,47 +120,23 @@
     <div class="right-column">
         <div class="login-form">
             <!-- User Login -->
-            <form th:action="@{/user/login}" method="post">
+            <form th:action="@{/user/register}" method="post">
                 <label for="userName">Username:</label>
                 <input type="text" id="userName" name="userName">
                 <br>
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password">
-                <br><p th:if="${error}" style="color: red;">${error}</p>
-
+                <br>
+                <p th:if="${error}" style="color: red;">${error}</p>
                 <input type="submit" value="Login">
             </form>
             <div class="register-link">
-                <a th:href="@{/user/register}">Register</a>
+                <a th:href="@{/user/login}">Login</a>
             </div>
 
-            <!-- Admin Login (Modal) -->
-            <button class="admin-login-button" onclick="document.getElementById('adminModal').style.display='block'">Admin Login</button>
-            <div id="adminModal" class="admin-modal">
-                <div class="admin-modal-content">
-                    <span class="close" onclick="document.getElementById('adminModal').style.display='none'">&times;</span>
-                    <h2>Admin Login</h2>
-                    <form th:action="@{/admin/login}" method="post">
-                        <label for="adminPassword">Password:</label>
-                        <input type="password" id="adminPassword" name="password">
-                        <br>
-                        <input type="submit" value="Login">
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 </div>
-
-<script>
-    // Close the admin modal when the user clicks outside of it
-    window.onclick = function(event) {
-        var modal = document.getElementById('adminModal');
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
 
 </body>
 </html>
