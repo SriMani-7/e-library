@@ -15,7 +15,7 @@ using Spring Boot for the backend, H2 as the database, and Thymeleaf for the fro
 
 - **Backend**: Spring Boot
 - **Database**: H2
-- **Frontend**: Thymeleaf
+- **Frontend**: HTML, CSS, Thymeleaf
 
 ## Contact
 
