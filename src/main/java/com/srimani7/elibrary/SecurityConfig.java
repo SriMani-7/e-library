@@ -29,6 +29,9 @@ public class SecurityConfig {
                 .formLogin(loginConfigurer -> {
                     loginConfigurer.successHandler(new LoginSuccessHandler());
                 })
+                .logout(logoutConfigurer -> {
+                    logoutConfigurer.logoutSuccessUrl("/");
+                })
                 .build();
     }
 
