@@ -15,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
@@ -25,6 +26,7 @@ public class SecurityConfig {
                     registry.requestMatchers("/admin/**").hasRole("ADMIN");
                     registry.anyRequest().permitAll();
                 })
+                .formLogin(loginConfigurer -> {})
                 .build();
     }
 

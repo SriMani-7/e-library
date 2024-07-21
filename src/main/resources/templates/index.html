@@ -18,149 +18,31 @@
         .content {
             display: flex;
             justify-content: space-between;
-            padding: 20px;
-        }
-        .left-column {
-            width: 45%;
-        }
-        .right-column {
-            width: 45%;
-            display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: flex-end;
-        }
-        .login-form {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-        .login-form label {
-            margin-bottom: 5px;
-        }
-        .login-form input[type="text"],
-        .login-form input[type="password"] {
-            margin-bottom: 10px;
-            padding: 5px;
-            width: 200px;
-        }
-        .login-form input[type="submit"] {
-            padding: 8px 15px;
-            background-color: teal;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .login-form input[type="submit"]:hover {
-            background-color: #007c7c;
-        }
-        .register-link {
-            margin-bottom: 10px;
-            text-align: right;
-        }
-        .admin-login-button {
-            padding: 8px 15px;
-            background-color: teal;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .admin-login-button:hover {
-            background-color: #007c7c;
-        }
-        .admin-modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-        .admin-modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
             padding: 20px;
-            border: 1px solid #888;
-            width: 30%;
-            text-align: center;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-<!-- Header -->
 <div class="header">
     <h1>Library Management System</h1>
 </div>
 
-<!-- Content -->
 <div class="content">
-    <!-- Left Column (Welcome) -->
     <div class="left-column">
         <h2>Welcome</h2>
         <p>This is the Library Management System. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </div>
 
-    <!-- Right Column (Login) -->
-    <div class="right-column">
-        <div class="login-form">
-            <!-- User Login -->
-            <form th:action="@{/user/login}" method="post">
-                <label for="userName">Username:</label>
-                <input type="text" id="userName" name="userName">
-                <br>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
-                <br><p th:if="${error}" style="color: red;">${error}</p>
-
-                <input type="submit" value="Login">
-            </form>
-            <div class="register-link">
-                <a th:href="@{/register}">Register</a>
-            </div>
-
-            <!-- Admin Login (Modal) -->
-            <button class="admin-login-button" onclick="document.getElementById('adminModal').style.display='block'">Admin Login</button>
-            <div id="adminModal" class="admin-modal">
-                <div class="admin-modal-content">
-                    <span class="close" onclick="document.getElementById('adminModal').style.display='none'">&times;</span>
-                    <h2>Admin Login</h2>
-                    <form th:action="@{/admin/login}" method="post">
-                        <label for="adminPassword">Password:</label>
-                        <input type="password" id="adminPassword" name="password">
-                        <br>
-                        <input type="submit" value="Login">
-                    </form>
-                </div>
-            </div>
+    <div>
+        <div>
+            <a th:href="@{/login}">User Login</a>
+            <a th:href="@{/login}">Admin login</a>
+            <a th:href="@{/register}">Register</a>
         </div>
     </div>
 </div>
-
-<script>
-    // Close the admin modal when the user clicks outside of it
-    window.onclick = function(event) {
-        var modal = document.getElementById('adminModal');
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
 
 </body>
 </html>
