@@ -40,4 +40,9 @@ public class HomeController {
             return "redirect:/";
         }
     }
+
+    @GetMapping("access-denied")
+    public String accessDenied() {
+        return "403";
+    }
 }

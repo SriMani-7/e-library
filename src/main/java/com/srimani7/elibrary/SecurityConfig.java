@@ -32,6 +32,9 @@ public class SecurityConfig {
                 .logout(logoutConfigurer -> {
                     logoutConfigurer.logoutSuccessUrl("/");
                 })
+                .exceptionHandling(exceptionHandlingConfigurer -> {
+                    exceptionHandlingConfigurer.accessDeniedPage("/access-denied");
+                })
                 .build();
     }
 
