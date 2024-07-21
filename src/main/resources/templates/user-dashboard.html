@@ -50,6 +50,7 @@
 <body>
 <div class="container">
     <h3>Welcome, ${user}</h3>
+    <a th:href="@{/logout}">Logout</a>
     <form method="GET" style="margin-top: 20px;">
         <input type="text" name="search" placeholder="Search Book...">
         <button type="submit" class="button">Search</button>

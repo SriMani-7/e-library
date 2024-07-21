@@ -2,7 +2,6 @@ package com.srimani7.elibrary.controllers;
 
 import com.srimani7.elibrary.Entity.Book;
 import com.srimani7.elibrary.repositories.BookRepository;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,14 +18,6 @@ public class AdminController {
     @Autowired
     public AdminController(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
-    }
-
-    @PostMapping("/login")
-    public String login(@RequestParam String password, HttpSession httpSession) {
-        if (password.equals("1234567890")) {
-            httpSession.setAttribute("role", "ADMIN");
-        }
-        return "redirect:/admin/dashboard";
     }
 
     @GetMapping("/dashboard")

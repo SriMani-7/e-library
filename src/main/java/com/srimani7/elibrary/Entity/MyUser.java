@@ -2,16 +2,16 @@ package com.srimani7.elibrary.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "users")
-public class User {
+public class MyUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column(name = "user_name")
-    private String userName;
+    @Column(name = "username", unique = true)
+    private String username;
     private String password;
+    private String role;
 }
