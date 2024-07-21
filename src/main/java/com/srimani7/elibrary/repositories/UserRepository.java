@@ -1,12 +1,16 @@
 package com.srimani7.elibrary.repositories;
 
-import com.srimani7.elibrary.Entity.User;
+import com.srimani7.elibrary.Entity.MyUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUserNameAndPassword(String userName, String password);
+import java.util.Optional;
 
-    User findByUserName(String userName);
+@Repository
+public interface UserRepository extends JpaRepository<MyUser, Long> {
+    MyUser findByUserNameAndPassword(String userName, String password);
+
+    Optional<MyUser> findByUsername(String userName);
+
+    boolean existsByUserName(String username);
 }

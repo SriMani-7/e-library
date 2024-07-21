@@ -1,6 +1,7 @@
 package com.srimani7.elibrary.controllers;
 
-import com.srimani7.elibrary.Entity.User;
+import com.srimani7.elibrary.Entity.MyUser;
+import com.srimani7.elibrary.UserService;
 import com.srimani7.elibrary.repositories.BookRepository;
 import com.srimani7.elibrary.repositories.UserRepository;
 import jakarta.servlet.http.HttpSession;
@@ -18,19 +19,21 @@ public class UserController {
 
     private final BookRepository bookRepository;
     private final UserRepository userRepository;
+    private final UserService userService;
 
     @Autowired
-    public UserController(BookRepository bookRepository, UserRepository userRepository) {
+    public UserController(BookRepository bookRepository, UserRepository userRepository, UserService userService) {
         this.bookRepository = bookRepository;
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @PostMapping("/login")
     public String login(@RequestParam String userName, @RequestParam String password, Model model, HttpSession httpSession) {
-        User user = userRepository.findByUserNameAndPassword(userName, password);
-        if (user != null) {
+        MyUser myUser = userRepository.findByUserNameAndPassword(userName, password);
+        if (myUser != null) {
             httpSession.setAttribute("role", "user");
-            httpSession.setAttribute("userId", user.getId());
+            httpSession.setAttribute("userId", myUser.getId());
             return "redirect:/user/dashboard"; // Corrected path
         } else {
             model.addAttribute("error", "Wrong credentials");
@@ -54,15 +57,15 @@ public class UserController {
 
     @PostMapping("/register")
     public String register(@RequestParam String userName, @RequestParam String password, Model model) {
-        User existingUser = userRepository.findByUserName(userName);
-        if(existingUser != null) {
+        var existingUser = userRepository.existsByUserName(userName);
+        if(existingUser) {
             model.addAttribute("error", "Username already exists");
             return "redirect:/";
         } else {
-            User newUser = new User();
-            newUser.setUserName(userName);
-            newUser.setPassword(password);
-            userRepository.save(newUser);
+            MyUser newMyUser = new MyUser();
+            newMyUser.setUsername(userName);
+            newMyUser.setPassword(password);
+            userRepository.save(newMyUser);
             model.addAttribute("success", "Registration successfully completed");
             return "redirect:/";
         }
