@@ -1,7 +1,6 @@
 package com.srimani7.elibrary.controllers;
 
 import com.srimani7.elibrary.Entity.MyUser;
-import com.srimani7.elibrary.UserService;
 import com.srimani7.elibrary.repositories.BookRepository;
 import com.srimani7.elibrary.repositories.UserRepository;
 import jakarta.servlet.http.HttpSession;
@@ -19,18 +18,16 @@ public class UserController {
 
     private final BookRepository bookRepository;
     private final UserRepository userRepository;
-    private final UserService userService;
 
     @Autowired
-    public UserController(BookRepository bookRepository, UserRepository userRepository, UserService userService) {
+    public UserController(BookRepository bookRepository, UserRepository userRepository) {
         this.bookRepository = bookRepository;
         this.userRepository = userRepository;
-        this.userService = userService;
     }
 
     @PostMapping("/login")
     public String login(@RequestParam String userName, @RequestParam String password, Model model, HttpSession httpSession) {
-        MyUser myUser = userRepository.findByUserNameAndPassword(userName, password);
+        MyUser myUser = userRepository.findByUsernameAndPassword(userName, password);
         if (myUser != null) {
             httpSession.setAttribute("role", "user");
             httpSession.setAttribute("userId", myUser.getId());
@@ -48,26 +45,5 @@ public class UserController {
         }
         else model.addAttribute("books", bookRepository.findAll());
         return "user-dashboard";
-    }
-
-    @GetMapping("/register")
-    public String registration() {
-        return "user-register";
-    }
-
-    @PostMapping("/register")
-    public String register(@RequestParam String userName, @RequestParam String password, Model model) {
-        var existingUser = userRepository.existsByUserName(userName);
-        if(existingUser) {
-            model.addAttribute("error", "Username already exists");
-            return "redirect:/";
-        } else {
-            MyUser newMyUser = new MyUser();
-            newMyUser.setUsername(userName);
-            newMyUser.setPassword(password);
-            userRepository.save(newMyUser);
-            model.addAttribute("success", "Registration successfully completed");
-            return "redirect:/";
-        }
     }
 }
