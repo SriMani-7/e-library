@@ -26,7 +26,9 @@ public class SecurityConfig {
                     registry.requestMatchers("/admin/**").hasRole("ADMIN");
                     registry.anyRequest().permitAll();
                 })
-                .formLogin(loginConfigurer -> {})
+                .formLogin(loginConfigurer -> {
+                    loginConfigurer.successHandler(new LoginSuccessHandler());
+                })
                 .build();
     }
 
