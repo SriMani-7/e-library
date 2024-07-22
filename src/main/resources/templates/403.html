@@ -1,15 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Library Management System</title>
+    <title>Unauthorized Access - Library Management System</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .content {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .content h1 {
+            font-size: 2em;
+            color: #333;
+        }
+        .content p {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #666;
+        }
+        .content a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .content a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
 <div class="content">
-    You are unauthorized to access this page
-    go to <a th:href="@{/}">Home page</a>
+    <h1>403 - Unauthorized Access</h1>
+    <p>You are unauthorized to access this page.</p>
+    <p>Go to <a th:href="@{/}" th:text="${'Home page'}">Home page</a></p>
 </div>
 
 </body>
