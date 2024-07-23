@@ -1,48 +1,156 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <title>Library Management System</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .header {
-            background-color: teal;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .content {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: column;
-            padding: 20px;
-        }
+      :root {
+        --background: #f0f5f9;
+        --on-background: #333;
+        --primary: #007bff;
+        --on-primary: white;
+        --body-color: #666;
+        --card-background: white;
+        --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: var(--background);
+        color: var(--on-background); /* Dark grey text */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      /* Header styles */
+      .header {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        max-width: 600px;
+      }
+      .header h2 {
+        margin: 0;
+        font-size: 1.8em;
+        color: var(--primary);
+      }
+      .header p {
+        color: var(--body-color);
+      }
+      .header div {
+        display: flex;
+        margin-top: 20px;
+        gap: 8px;
+      }
+      .header a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: var(--primary);
+        font-weight: 400;
+        color: var(--on-primary);
+        text-decoration: none;
+        border-radius: 12px;
+        transition: border-color 0.3s ease;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 800px;
+        text-align: center;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-gap: 13px;
+      }
+      .feature-card {
+        background-color: var(--card-background);
+        box-shadow: var(--card-shadow);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: left;
+      }
+      .feature-card h3 {
+        color: var(--primary);
+        margin-top: 0;
+      }
+      .feature-card p {
+        color: var(--body-color);
+        line-height: 1.6;
+      }
+      footer {
+        text-align: center;
+        margin-top: 20px;
+        color: var(--body-color);
+      }
+      footer a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: bold;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <header class="header">
+      <h2>Library Management System</h2>
+      <p>
+        Welcome to our Library Management System! Manage books, users, and more
+        with ease. Explore our secure and efficient platform today.
+      </p>
+      <div>
+        <a th:href="@{/login}">Sign in</a>
+        <a th:href="@{/register}">Register</a>
+      </div>
+    </header>
 
-<div class="header">
-    <h1>Library Management System</h1>
-</div>
-
-<div class="content">
-    <div class="left-column">
-        <h2>Welcome</h2>
-        <p>This is the Library Management System. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-
-    <div>
-        <div>
-            <a th:href="@{/login}">User Login</a>
-            <a th:href="@{/login}">Admin login</a>
-            <a th:href="@{/register}">Register</a>
+    <div class="container">
+      <div class="grid-container">
+        <div class="feature-card">
+          <h3>CRUD operations</h3>
+          <p>
+            Manage books, users with comprehensive CRUD (Create, Read, Update,
+            Delete) functionalities.
+          </p>
         </div>
+        <div class="feature-card">
+          <h3>H2 Database Integration</h3>
+          <p>
+            Powered by H2, a lightweight and efficient in-memory database, our
+            system offers robust data storage and retrieval capabilities.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>Spring Security</h3>
+          <p>
+            Secure user registration, login, role-based access control, and
+            authentication using Spring Security.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>Thymeleaf Templating Engine</h3>
+          <p>
+            Enhancing the user interface with Thymeleaf, a powerful and
+            versatile templating engine for server-side Java applications.
+          </p>
+        </div>
+      </div>
     </div>
-</div>
 
-</body>
+    <footer>
+      <p>
+        Don't forget to ⭐ the github repo: <a href="https://github.com/SriMani-7/e-library">SriMani7/e-library</a>
+      </p>
+    </footer>
+  </body>
 </html>
