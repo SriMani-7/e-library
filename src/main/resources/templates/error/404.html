@@ -4,12 +4,9 @@
     <title>Page Not Found - Library Management System</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../static/theme.css" th:href="@{theme.css}">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,14 +14,13 @@
         }
         .content {
             text-align: center;
-            background-color: #fff;
+            background-color: var(--card-background);
             padding: 20px;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--card-shadow);
         }
         .content h1 {
             font-size: 2em;
-            color: #333;
         }
         .content p {
             margin-top: 10px;
@@ -32,7 +28,7 @@
             color: #666;
         }
         .content a {
-            color: #007bff;
+            color: var(--primary);
             text-decoration: none;
         }
         .content a:hover {
