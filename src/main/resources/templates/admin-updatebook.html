@@ -4,38 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Book</title>
+    <link rel="stylesheet" href="../static/theme.css" th:href="@{/theme.css}">
     <style>
-        /* Modern CSS styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
         .container {
             max-width: 600px;
             margin: 20px auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: var(--card-background);
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--card-shadow);
         }
         .button {
             padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
+            background-color: var(--primary);
+            color: var(--on-primary);
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
-        .button:hover {
-            background-color: #0056b3;
-        }
+        
         form {
             margin-top: 20px;
-        }
-        label {
-            font-weight: bold;
         }
         input[type="text"],
         input[type="number"] {
@@ -47,11 +36,15 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
+
+        h2 {
+            margin-bottom: 12px;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>Edit Book</h1>
+    <h2>Edit Book</h2>
     <form th:action="@{/admin/update-book}" th:method="PUT">
         <input type="hidden" th:name="isbn" th:value="${book.isbn}" />
         <label for="title">Title:</label>
