@@ -43,6 +43,6 @@ public class HomeController {
 
     @GetMapping("access-denied")
     public String accessDenied() {
-        return "403";
+        return "error/403";
     }
 }

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Page Not Found - Library Management System</title>
-    <meta charset="UTF-8">
+    <title>Unauthorized Access - Library Management System</title>
+    <meta charset="UTF-8"></head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../static/theme.css" th:href="@{theme.css}">
     <style>
-        body {
+        body {            
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,8 +16,8 @@
             text-align: center;
             background-color: var(--card-background);
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: var(--card-shadow);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow)
         }
         .content h1 {
             font-size: 2em;
@@ -25,7 +25,7 @@
         .content p {
             margin-top: 10px;
             font-size: 1.2em;
-            color: #666;
+            color: var(--body-color);
         }
         .content a {
             color: var(--primary);
@@ -39,8 +39,8 @@
 <body>
 
 <div class="content">
-    <h1>404 - Page Not Found</h1>
-    <p>We're sorry, the page you requested could not be found.</p>
+    <h1>403 - Unauthorized Access</h1>
+    <p>You are unauthorized to access this page.</p>
     <p>Go to <a th:href="@{/}" th:text="${'Home page'}">Home page</a></p>
 </div>
 
